@@ -1,0 +1,252 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  color: #333;
+  background-color: #ffffff;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Elementor Base Styles */
+.elementor {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.elementor-section {
+  width: 100%;
+  padding: 60px 0;
+  position: relative;
+}
+
+.elementor-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.elementor-column {
+  width: 100%;
+}
+
+.elementor-widget-wrap {
+  width: 100%;
+}
+
+.elementor-widget-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Header Styles */
+.elementor-element-3df5dc3 {
+  background-color: #ffffff;
+  padding: 20px 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.e-con-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.elementor-element-ad17128 {
+  flex: 1;
+}
+
+.elementor-element-9eff2f8 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Logo Styles */
+.elementor-element-f1c394c img {
+  max-height: 60px;
+  width: auto;
+}
+
+/* Login Section Styles */
+.elementor-element-cc21c34 .elementor-heading-title {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  font-weight: 400;
+}
+
+.elementor-element-78d2525 .elementor-heading-title {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.elementor-element-78d2525 a {
+  color: #007cba;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 2px solid #007cba;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.elementor-element-78d2525 a:hover {
+  background-color: #007cba;
+  color: white;
+}
+
+/* Hero Section Styles */
+.elementor-element-6c8b8c6 {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  text-align: center;
+  padding: 80px 0;
+}
+
+.elementor-element-4f8a9c2 .elementor-heading-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 30px;
+  line-height: 1.2;
+}
+
+.elementor-element-7e2b4d1 p {
+  font-size: 1.25rem;
+  color: #64748b;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Button Styles */
+.elementor-button {
+  background: linear-gradient(135deg, #007cba, #0ea5e9);
+  color: white;
+  padding: 18px 40px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 40px;
+}
+
+.elementor-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 124, 186, 0.3);
+  background: linear-gradient(135deg, #0ea5e9, #007cba);
+}
+
+/* Icon List Styles */
+.elementor-icon-list-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.elementor-icon-list-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.elementor-icon-list-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.elementor-icon-list-icon {
+  color: #007cba;
+  font-size: 1.25rem;
+}
+
+.elementor-icon-list-text {
+  font-weight: 500;
+  color: #1e293b;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .e-con-inner {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .elementor-element-4f8a9c2 .elementor-heading-title {
+    font-size: 2.5rem;
+  }
+  
+  .elementor-element-7e2b4d1 p {
+    font-size: 1.1rem;
+  }
+  
+  .elementor-icon-list-items {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .elementor-icon-list-item {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+  
+  .elementor-section {
+    padding: 40px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .elementor-element-4f8a9c2 .elementor-heading-title {
+    font-size: 2rem;
+  }
+  
+  .elementor-button {
+    padding: 16px 32px;
+    font-size: 1rem;
+  }
+  
+  .elementor-container {
+    padding: 0 15px;
+  }
+}
