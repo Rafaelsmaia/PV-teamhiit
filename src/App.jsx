@@ -42,12 +42,25 @@ function App() {
     // Adicionar CSS para animação da faixa e carrossel
     const style = document.createElement('style');
     style.textContent = `
-      @keyframes scrollLeft {
+      @keyframes marqueeScroll {
         0% { transform: translateX(100%); }
         100% { transform: translateX(-100%); }
       }
-      .scrolling-banner {
-        animation: scrollLeft 15s linear infinite;
+      
+      .marquee-container {
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+        width: 100%;
+      }
+      
+      .marquee-text {
+        display: inline-block;
+        animation: marqueeScroll 30s linear infinite;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 4px;
         white-space: nowrap;
       }
       
@@ -152,6 +165,20 @@ function App() {
         .testimonial-image {
           width: 150px;
           height: 150px;
+        }
+        
+        .marquee-text {
+          font-size: 1.2rem;
+          letter-spacing: 3px;
+        }
+        
+        .features-grid {
+          grid-template-columns: 1fr !important;
+          gap: 30px !important;
+        }
+        
+        .feature-card {
+          max-width: 100% !important;
         }
       }
     `;
@@ -285,8 +312,8 @@ function App() {
               color: '#333'
             }}>
               Entre em forma do<br />
-              seu jeito: <span style={{ color: '#e53e3e' }}>em casa</span><br />
-              ou <span style={{ color: '#e53e3e' }}>na academia!</span>
+              seu jeito: <span style={{ color: '#e53e3e' }}>no conforto<br />
+              da sua casa!</span>
             </h1>
             
             <p style={{
@@ -296,8 +323,8 @@ function App() {
               lineHeight: '1.4',
               fontWeight: '400'
             }}>
-              Acesse mais de <strong>20 modalidades e 3.500 treinos</strong><br />
-              e transforme sua rotina de exercícios.
+              Descubra treinos que se encaixam na sua vida e conquiste o corpo que você sempre quis,<br />
+              com a flexibilidade que você precisa.
             </p>
             
             {/* BOTÃO COM EFEITO 3D */}
@@ -404,21 +431,18 @@ function App() {
         </div>
       </div>
 
-      {/* Faixa Azul - TEAM HIIT com movimento contínuo */}
+      {/* Faixa Azul - TEAM HIIT com movimento MARQUEE INFINITO */}
       <div style={{
         width: '100%',
         backgroundColor: '#17a2b8',
         color: 'white',
-        padding: '12px 0',
-        fontSize: '1rem',
-        fontWeight: 'bold',
-        textTransform: 'uppercase',
-        letterSpacing: '2px',
-        overflow: 'hidden',
+        padding: '18px 0',
         position: 'relative'
       }}>
-        <div className="scrolling-banner">
-          ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT
+        <div className="marquee-container">
+          <div className="marquee-text">
+            ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT ⚡ TEAM HIIT
+          </div>
         </div>
       </div>
 
@@ -591,6 +615,248 @@ function App() {
             Essas são pessoas reais, <strong>assim como você</strong>, que superaram seus<br />
             limites e alcançaram o corpo dos sonhos.
           </p>
+        </div>
+      </div>
+
+      {/* NOVA SEÇÃO: O QUE VOCÊ ENCONTRA NA TEAM HIIT? - AGORA APÓS O CARROSSEL */}
+      <div style={{
+        width: '100%',
+        padding: '80px 30px',
+        backgroundColor: '#ffffff',
+        textAlign: 'center'
+      }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
+          <h2 style={{
+            fontSize: '2.5rem',
+            fontWeight: 'bold',
+            marginBottom: '60px',
+            color: '#333',
+            lineHeight: '1.2'
+          }}>
+            O que <span style={{ color: '#e53e3e' }}>você encontra</span> na Team HIIT?
+          </h2>
+          
+          {/* GRID DE FEATURES */}
+          <div className="features-grid" style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '40px',
+            marginBottom: '40px'
+          }}>
+            
+            {/* PROGRAMAS PARA TODOS OS NÍVEIS */}
+            <div className="feature-card" style={{
+              textAlign: 'left',
+              maxWidth: '400px',
+              margin: '0 auto'
+            }}>
+              <div style={{
+                width: '80px',
+                height: '80px',
+                marginBottom: '20px',
+                borderRadius: '15px',
+                overflow: 'hidden',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+              }}>
+                <img 
+                  src="./IMAGENS/icon_programas.png" 
+                  alt="Programas para todos os níveis"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
+              </div>
+              <h3 style={{
+                fontSize: '1.4rem',
+                fontWeight: 'bold',
+                marginBottom: '15px',
+                color: '#333'
+              }}>
+                Programas para todos os níveis
+              </h3>
+              <p style={{
+                color: '#666',
+                fontSize: '1rem',
+                lineHeight: '1.5',
+                margin: 0
+              }}>
+                Desde quem está começando até quem quer se superar, com treinos de musculação, funcional, HIIT, yoga, corrida e muito mais.
+              </p>
+            </div>
+
+            {/* FLEXIBILIDADE TOTAL */}
+            <div className="feature-card" style={{
+              textAlign: 'left',
+              maxWidth: '400px',
+              margin: '0 auto'
+            }}>
+              <div style={{
+                width: '80px',
+                height: '80px',
+                marginBottom: '20px',
+                borderRadius: '15px',
+                overflow: 'hidden',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+              }}>
+                <img 
+                  src="./IMAGENS/icon_flexibilidade.png" 
+                  alt="Flexibilidade total"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
+              </div>
+              <h3 style={{
+                fontSize: '1.4rem',
+                fontWeight: 'bold',
+                marginBottom: '15px',
+                color: '#333'
+              }}>
+                Flexibilidade total
+              </h3>
+              <p style={{
+                color: '#666',
+                fontSize: '1rem',
+                lineHeight: '1.5',
+                margin: 0
+              }}>
+                Exercícios pensados para caber na sua rotina.
+              </p>
+            </div>
+
+            {/* NUTRIÇÃO PRÁTICA E ACESSÍVEL */}
+            <div className="feature-card" style={{
+              textAlign: 'left',
+              maxWidth: '400px',
+              margin: '0 auto'
+            }}>
+              <div style={{
+                width: '80px',
+                height: '80px',
+                marginBottom: '20px',
+                borderRadius: '15px',
+                overflow: 'hidden',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+              }}>
+                <img 
+                  src="./IMAGENS/icon_nutricao.png" 
+                  alt="Nutrição prática e acessível"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
+              </div>
+              <h3 style={{
+                fontSize: '1.4rem',
+                fontWeight: 'bold',
+                marginBottom: '15px',
+                color: '#333'
+              }}>
+                Nutrição prática e acessível
+              </h3>
+              <p style={{
+                color: '#666',
+                fontSize: '1rem',
+                lineHeight: '1.5',
+                margin: 0
+              }}>
+                Cardápios reais, fáceis de seguir, que aceleram seus resultados sem complicação.
+              </p>
+            </div>
+
+            {/* COMUNIDADE E SUPORTE */}
+            <div className="feature-card" style={{
+              textAlign: 'left',
+              maxWidth: '400px',
+              margin: '0 auto'
+            }}>
+              <div style={{
+                width: '80px',
+                height: '80px',
+                marginBottom: '20px',
+                borderRadius: '15px',
+                overflow: 'hidden',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+              }}>
+                <img 
+                  src="./IMAGENS/icon_comunidade.png" 
+                  alt="Comunidade e suporte"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
+              </div>
+              <h3 style={{
+                fontSize: '1.4rem',
+                fontWeight: 'bold',
+                marginBottom: '15px',
+                color: '#333'
+              }}>
+                Comunidade e suporte
+              </h3>
+              <p style={{
+                color: '#666',
+                fontSize: '1rem',
+                lineHeight: '1.5',
+                margin: 0
+              }}>
+                Você nunca está sozinho, conta com o apoio dos maiores especialistas do Brasil e uma rede de pessoas que vibra com as suas conquistas.
+              </p>
+            </div>
+
+            {/* FOCO NO SEU BEM-ESTAR */}
+            <div className="feature-card" style={{
+              textAlign: 'left',
+              maxWidth: '400px',
+              margin: '0 auto'
+            }}>
+              <div style={{
+                width: '80px',
+                height: '80px',
+                marginBottom: '20px',
+                borderRadius: '15px',
+                overflow: 'hidden',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+              }}>
+                <img 
+                  src="./IMAGENS/icon_bem_estar.png" 
+                  alt="Foco no seu bem-estar"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
+              </div>
+              <h3 style={{
+                fontSize: '1.4rem',
+                fontWeight: 'bold',
+                marginBottom: '15px',
+                color: '#333'
+              }}>
+                Foco no seu bem-estar
+              </h3>
+              <p style={{
+                color: '#666',
+                fontSize: '1rem',
+                lineHeight: '1.5',
+                margin: 0
+              }}>
+                Saúde e movimento para você se sentir bem, com leveza, sem padrões inalcançáveis.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
