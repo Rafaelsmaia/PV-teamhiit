@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import FAQ from './components/FAQ';
 
 function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   
-  // Atualizando para usar as novas imagens de provas sociais
   const testimonials = [
     {
       id: 1,
@@ -28,11 +28,9 @@ function App() {
     }
   ];
 
-  // Carrossel infinito - agora com 5 slides (uma imagem por vez)
   const totalSlides = testimonials.length;
 
   useEffect(() => {
-    // Garantir que html e body ocupem 100% da largura sem overflow
     document.documentElement.style.width = '100%';
     document.documentElement.style.overflowX = 'hidden';
     document.documentElement.style.margin = '0';
@@ -42,39 +40,32 @@ function App() {
     document.body.style.overflowX = 'hidden';
     document.body.style.margin = '0';
     document.body.style.padding = '0';
-    // Usando as mesmas fontes da referência
     document.body.style.fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif';
     document.body.style.backgroundColor = '#ffffff';
 
-    // Adicionar CSS para animação da faixa e carrossel
     const style = document.createElement('style');
     style.textContent = `
       @keyframes marqueeScroll {
-        0% { transform: translateX(100%); }
+        0% { transform: translateX(0%); }
         100% { transform: translateX(-100%); }
       }
       
-         .marquee-container {
-          overflow: hidden;
-          white-space: nowrap;
-          width: 100%;
-        }
-        
-        .marquee-text {
-          display: inline-block;
-          animation: marquee 40s linear infinite;
-          font-size: 1.2rem;
-          font-weight: bold;
-          letter-spacing: 2px;
-        }
-        
-        @keyframes marquee {
-          0% { transform: translateX(100%); }
-          100% { transform: translateX(-100%); }
-        }overflow: hidden;
+      .marquee-container {
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
         width: 100%;
-        max-width: 800px;
-        margin: 0 auto;
+      }
+      
+      .marquee-text {
+        display: inline-block;
+        animation: marqueeScroll 60s linear infinite;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        white-space: nowrap;
+        padding-right: 100%; /* Para garantir que o texto não desapareça antes de uma nova cópia aparecer */
       }
       
       .carousel-images {
@@ -82,10 +73,11 @@ function App() {
         transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
         justify-content: center;
         align-items: flex-start;
-        gap: 10px;
+        gap: 15px; 
         padding: 0 10px;
         box-sizing: border-box;
         flex-direction: row;
+        flex-wrap: nowrap; 
       }
       
       .carousel-images.transitioning {
@@ -94,16 +86,17 @@ function App() {
       }
       
       .testimonial-card {
-        flex: 0 0 calc(50% - 5px);
+        flex: 0 0 calc(50% - 7.5px); 
         text-align: center;
-        max-width: calc(50% - 5px);
+        max-width: calc(50% - 7.5px); 
         transition: transform 0.3s ease;
+        min-width: 0; 
       }
       
       .testimonial-image {
         width: 100%;
-        height: 200px;
-        max-width: 150px;
+        height: auto;
+        display: block; 
         object-fit: cover;
         border-radius: 8px;
         margin-bottom: 15px;
@@ -145,8 +138,8 @@ function App() {
         font-size: 20px;
         font-weight: bold;
         display: flex;
-        alignItems: 'center';
-        justifyContent: 'center';
+        align-items: center;
+        justify-content: center;
         z-index: 10;
         transition: all 0.3s ease;
       }
@@ -166,11 +159,7 @@ function App() {
       
       @media (max-width: 768px) {
         .carousel-images {
-          flex-direction: row !important;
-          align-items: flex-start !important;
           gap: 10px !important;
-          justify-content: center !important;
-          padding: 0 10px !important;
         }
         
         .testimonial-card {
@@ -180,8 +169,7 @@ function App() {
         
         .testimonial-image {
           width: 100% !important;
-          height: 200px !important;
-          max-width: 150px !important;
+          height: auto !important;
           border-radius: 8px !important;
         }
         
@@ -244,54 +232,20 @@ function App() {
           letter-spacing: 3px;
         }
         
-        .features-section {
-          padding: 60px 15px !important;
-          margin: 0 !important;
-          width: 100% !important;
-          box-sizing: border-box !important;
+        .features-grid {
+          grid-template-columns: 1fr !important;
+          gap: 30px !important;
         }
         
-        .features-title {
-          font-size: 1.8rem !important;
-          line-height: 1.3 !important;
-          text-align: center !important;
-          margin: 0 auto 40px auto !important;
-          padding: 0 10px !important;
+        .feature-card {
           max-width: 100% !important;
-          width: 100% !important;
-          box-sizing: border-box !important;
-        }
-        
-        .feature-card-horizontal {
-          flex-direction: column !important;
-          gap: 15px !important;
-          padding: 20px !important;
-          text-align: center !important;
-        }
-        
-        .feature-icon-container {
-          margin: 0 auto !important;
-        }
-        
-        .feature-text-container {
-          text-align: center !important;
-        }
-        
-        .feature-text-container h3 {
-          font-size: 1.2rem !important;
-          margin-bottom: 10px !important;
-        }
-        
-        .feature-text-container p {
-          font-size: 0.9rem !important;
         }
 
         .hero-section-background {
           background-image: url("./IMAGENS/banner mobile.png") !important;
-          background-position: center center !important;
-          height: calc(100vw * 1.875) !important;
-          min-height: calc(100vw * 1.875) !important;
-          max-height: calc(100vh - 80px) !important;
+          background-position: center !important;
+          height: 100vh !important;
+          min-height: 600px !important;
         }
 
         .hero-content-container {
@@ -299,8 +253,8 @@ function App() {
           text-align: center !important;
           justify-content: center !important;
           align-items: center !important;
-          padding-top: 80px !important;
-          padding-bottom: 40px !important;
+          padding-top: 10vh !important;
+          padding-bottom: 5vh !important;
         }
 
         .hero-text-container {
@@ -332,7 +286,7 @@ function App() {
           justify-content: center !important;
           max-width: 100% !important;
           gap: 8px !important;
-          margin-bottom: 5px !important;
+          margin-bottom: 0px !important;
         }
 
         .hero-widget {
@@ -381,11 +335,35 @@ function App() {
           padding: 8px 12px !important; 
           min-width: 120px !important; 
         }
+
+        .treinos-section-title {
+          font-size: 1.8rem !important;
+          line-height: 1.3 !important;
+          padding: 0 15px !important;
+          text-align: center !important;
+        }
+
+        .treinos-section-text {
+          font-size: 0.95rem !important;
+          padding: 0 15px !important;
+          line-height: 1.4 !important;
+          text-align: center !important;
+        }
+
+        .colmeia-image {
+          max-width: 90% !important;
+          padding: 0 15px !important;
+          margin: 0 !important;
+        }
+
+        .treinos-section {
+          padding: 15px 15px !important;
+          text-align: left !important;
+        }
       }
     `;
     document.head.appendChild(style);
 
-    // Auto-play do carrossel
     const interval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % totalSlides);
     }, 4000);
@@ -420,7 +398,6 @@ function App() {
     }, 300);
   };
 
-  // Função para obter as duas imagens a serem exibidas
   const getCurrentImages = () => {
     const firstIndex = currentSlide;
     const secondIndex = (currentSlide + 1) % testimonials.length;
@@ -437,7 +414,6 @@ function App() {
       overflowX: 'hidden'
     }}>
       
-      {/* HEADER SÓLIDO CINZA - MAIS ESPESSO COMO NA REFERÊNCIA */}
       <div className="header-mobile" style={{
         width: '100%',
         backgroundColor: '#2c2c2c',
@@ -503,11 +479,10 @@ function App() {
         </div>
       </div>
 
-      {/* HERO SECTION - TODOS OS ELEMENTOS SOBRE O BANNER */}
       <div className="hero-section-background" style={{
         width: '100%',
         height: '70vh',
-        backgroundImage: 'url("./IMAGENS/IMAGEM BANNER.png")',
+        backgroundImage: 'url("./IMAGENS/IMAGEM BANNER.png" )',
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat',
@@ -519,7 +494,6 @@ function App() {
         padding: 0,
         boxSizing: 'border-box'
       }}>
-        {/* TODOS OS ELEMENTOS CENTRALIZADOS SOBRE A IMAGEM */}
         <div style={{
           textAlign: 'center',
           zIndex: 5,
@@ -549,7 +523,6 @@ function App() {
             Descubra treinos que se encaixam na sua vida e conquiste o corpo que você sempre quis, com a flexibilidade que você precisa.
           </p>
           
-          {/* BOTÃO COM EFEITO 3D */}
           <button className="hero-button" style={{
             backgroundColor: '#17a2b8',
             color: 'white',
@@ -578,7 +551,6 @@ function App() {
             QUERO COMEÇAR
           </button>
           
-          {/* WIDGETS PEQUENOS - 3 EM UMA LINHA */}
           <div className="hero-widgets" style={{
             display: 'flex',
             gap: '12px',
@@ -639,7 +611,6 @@ function App() {
         </div>
       </div>
 
-      {/* Faixa Azul - TEAM HIIT com movimento MARQUEE INFINITO - SEM ESPAÇO */}
       <div style={{
         width: '100%',
         backgroundColor: '#17a2b8',
@@ -655,7 +626,6 @@ function App() {
         </div>
       </div>
 
-      {/* SEÇÃO DE DEPOIMENTOS COM CARROSSEL INFINITO - DUAS IMAGENS POR VEZ, UMA IMAGEM POR TRANSIÇÃO */}
       <div className="testimonials-section" style={{
         width: '100%',
         padding: '60px 0px',
@@ -688,7 +658,6 @@ function App() {
             que alcançaram seus resultados em pouco tempo! Agora é a sua vez.
           </h2>
           
-          {/* CARROSSEL INFINITO COM TRANSIÇÃO SUAVE - DUAS IMAGENS POR VEZ, UMA TRANSIÇÃO POR VEZ */}
           <div className="carousel-container" style={{ 
             position: 'relative', 
             marginBottom: '20px',
@@ -707,7 +676,6 @@ function App() {
               ))}
             </div>
             
-            {/* SETAS DE NAVEGAÇÃO */}
             <button 
               className="carousel-arrows carousel-prev"
               onClick={prevSlide}
@@ -762,7 +730,6 @@ function App() {
             </button>
           </div>
           
-          {/* INDICADORES DE SLIDE - AGORA COM 5 DOTS */}
           <div className="carousel-dots" style={{
             display: 'flex',
             justifyContent: 'center',
@@ -803,7 +770,6 @@ function App() {
         </div>
       </div>
 
-      {/* Segunda Faixa Azul - TEAM HIIT com movimento MARQUEE INFINITO - ENTRE SEÇÕES */}
       <div style={{
         width: '100%',
         backgroundColor: '#17a2b8',
@@ -819,10 +785,9 @@ function App() {
         </div>
       </div>
 
-      {/* NOVA SEÇÃO: O QUE VOCÊ ENCONTRA NA TEAM HIIT? - AGORA APÓS O CARROSSEL */}
       <div style={{
         width: '100%',
-        padding: '80px 20px',
+        padding: '40px 20px',
         backgroundColor: '#f8f9fa',
         textAlign: 'center',
         margin: 0,
@@ -847,7 +812,6 @@ function App() {
             O que <span style={{ color: '#17a2b8' }}>você encontra</span> na Team HIIT?
           </h2>
           
-          {/* LISTA DE FEATURES EM CARDS HORIZONTAIS */}
           <div style={{
             display: 'flex',
             flexDirection: 'column',
@@ -855,22 +819,21 @@ function App() {
             marginBottom: '40px'
           }}>
             
-            {/* PROGRAMAS PARA TODOS OS NÍVEIS */}
             <div className="feature-card-horizontal" style={{
               display: 'flex',
-              alignItems: 'flex-start',
+              alignItems: 'center',
               backgroundColor: 'white',
               borderRadius: '15px',
-              padding: '25px',
+              padding: '15px',
               boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
               border: '1px solid #e9ecef',
               textAlign: 'left',
-              gap: '20px'
+              gap: '15px'
             }}>
               <div className="feature-icon-container" style={{
-                width: '60px',
-                height: '60px',
-                borderRadius: '12px',
+                width: '40px',
+                height: '40px',
+                borderRadius: '8px',
                 overflow: 'hidden',
                 flexShrink: 0,
                 boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
@@ -887,9 +850,9 @@ function App() {
               </div>
               <div className="feature-text-container" style={{ flex: 1 }}>
                 <h3 style={{
-                  fontSize: '1.3rem',
+                  fontSize: '1rem',
                   fontWeight: 'bold',
-                  marginBottom: '8px',
+                  marginBottom: '4px',
                   color: '#333',
                   lineHeight: '1.3'
                 }}>
@@ -897,7 +860,7 @@ function App() {
                 </h3>
                 <p style={{
                   color: '#666',
-                  fontSize: '0.95rem',
+                  fontSize: '0.8rem',
                   lineHeight: '1.5',
                   margin: 0
                 }}>
@@ -906,22 +869,21 @@ function App() {
               </div>
             </div>
 
-            {/* FLEXIBILIDADE TOTAL */}
             <div className="feature-card-horizontal" style={{
               display: 'flex',
-              alignItems: 'flex-start',
+              alignItems: 'center',
               backgroundColor: 'white',
               borderRadius: '15px',
-              padding: '25px',
+              padding: '15px',
               boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
               border: '1px solid #e9ecef',
               textAlign: 'left',
-              gap: '20px'
+              gap: '15px'
             }}>
               <div className="feature-icon-container" style={{
-                width: '60px',
-                height: '60px',
-                borderRadius: '12px',
+                width: '40px',
+                height: '40px',
+                borderRadius: '8px',
                 overflow: 'hidden',
                 flexShrink: 0,
                 boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
@@ -938,9 +900,9 @@ function App() {
               </div>
               <div className="feature-text-container" style={{ flex: 1 }}>
                 <h3 style={{
-                  fontSize: '1.3rem',
+                  fontSize: '1rem',
                   fontWeight: 'bold',
-                  marginBottom: '8px',
+                  marginBottom: '4px',
                   color: '#333',
                   lineHeight: '1.3'
                 }}>
@@ -948,7 +910,7 @@ function App() {
                 </h3>
                 <p style={{
                   color: '#666',
-                  fontSize: '0.95rem',
+                  fontSize: '0.8rem',
                   lineHeight: '1.5',
                   margin: 0
                 }}>
@@ -957,22 +919,21 @@ function App() {
               </div>
             </div>
 
-            {/* NUTRIÇÃO PRÁTICA E ACESSÍVEL */}
             <div className="feature-card-horizontal" style={{
               display: 'flex',
-              alignItems: 'flex-start',
+              alignItems: 'center',
               backgroundColor: 'white',
               borderRadius: '15px',
-              padding: '25px',
+              padding: '15px',
               boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
               border: '1px solid #e9ecef',
               textAlign: 'left',
-              gap: '20px'
+              gap: '15px'
             }}>
               <div className="feature-icon-container" style={{
-                width: '60px',
-                height: '60px',
-                borderRadius: '12px',
+                width: '40px',
+                height: '40px',
+                borderRadius: '8px',
                 overflow: 'hidden',
                 flexShrink: 0,
                 boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
@@ -989,9 +950,9 @@ function App() {
               </div>
               <div className="feature-text-container" style={{ flex: 1 }}>
                 <h3 style={{
-                  fontSize: '1.3rem',
+                  fontSize: '1rem',
                   fontWeight: 'bold',
-                  marginBottom: '8px',
+                  marginBottom: '4px',
                   color: '#333',
                   lineHeight: '1.3'
                 }}>
@@ -999,7 +960,7 @@ function App() {
                 </h3>
                 <p style={{
                   color: '#666',
-                  fontSize: '0.95rem',
+                  fontSize: '0.8rem',
                   lineHeight: '1.5',
                   margin: 0
                 }}>
@@ -1008,22 +969,21 @@ function App() {
               </div>
             </div>
 
-            {/* COMUNIDADE E SUPORTE */}
             <div className="feature-card-horizontal" style={{
               display: 'flex',
-              alignItems: 'flex-start',
+              alignItems: 'center',
               backgroundColor: 'white',
               borderRadius: '15px',
-              padding: '25px',
+              padding: '15px',
               boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
               border: '1px solid #e9ecef',
               textAlign: 'left',
-              gap: '20px'
+              gap: '15px'
             }}>
               <div className="feature-icon-container" style={{
-                width: '60px',
-                height: '60px',
-                borderRadius: '12px',
+                width: '40px',
+                height: '40px',
+                borderRadius: '8px',
                 overflow: 'hidden',
                 boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
               }}>
@@ -1039,9 +999,9 @@ function App() {
               </div>
               <div className="feature-text-container" style={{ flex: 1 }}>
                 <h3 style={{
-                  fontSize: '1.3rem',
+                  fontSize: '1rem',
                   fontWeight: 'bold',
-                  marginBottom: '8px',
+                  marginBottom: '4px',
                   color: '#333',
                   lineHeight: '1.3'
                 }}>
@@ -1049,7 +1009,7 @@ function App() {
                 </h3>
                 <p style={{
                   color: '#666',
-                  fontSize: '0.95rem',
+                  fontSize: '0.8rem',
                   lineHeight: '1.5',
                   margin: 0
                 }}>
@@ -1058,22 +1018,21 @@ function App() {
               </div>
             </div>
 
-            {/* FOCO NO SEU BEM-ESTAR */}
             <div className="feature-card-horizontal" style={{
               display: 'flex',
-              alignItems: 'flex-start',
+              alignItems: 'center',
               backgroundColor: 'white',
               borderRadius: '15px',
-              padding: '25px',
+              padding: '15px',
               boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
               border: '1px solid #e9ecef',
               textAlign: 'left',
-              gap: '20px'
+              gap: '15px'
             }}>
               <div className="feature-icon-container" style={{
-                width: '60px',
-                height: '60px',
-                borderRadius: '12px',
+                width: '40px',
+                height: '40px',
+                borderRadius: '8px',
                 overflow: 'hidden',
                 flexShrink: 0,
                 boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
@@ -1090,9 +1049,9 @@ function App() {
               </div>
               <div className="feature-text-container" style={{ flex: 1 }}>
                 <h3 style={{
-                  fontSize: '1.3rem',
+                  fontSize: '1rem',
                   fontWeight: 'bold',
-                  marginBottom: '8px',
+                  marginBottom: '4px',
                   color: '#333',
                   lineHeight: '1.3'
                 }}>
@@ -1100,7 +1059,7 @@ function App() {
                 </h3>
                 <p style={{
                   color: '#666',
-                  fontSize: '0.95rem',
+                  fontSize: '0.8rem',
                   lineHeight: '1.5',
                   margin: 0
                 }}>
@@ -1112,120 +1071,61 @@ function App() {
         </div>
       </div>
 
-      {/* CALL TO ACTION AZUL */}
-      <div style={{
+      <div className="treinos-section" style={{
         width: '100%',
-        backgroundColor: '#17a2b8',
-        color: 'white',
-        padding: '60px 30px',
-        textAlign: 'center'
+        backgroundColor: '#f8f9fa',
+        padding: '20px 30px',
+        textAlign: 'center' // Alterado para centralizar
       }}>
         <div style={{
           maxWidth: '800px',
           margin: '0 auto'
         }}>
-          <h2 style={{
+          <h2 className="treinos-section-title" style={{
             fontSize: '2.2rem',
             fontWeight: 'bold',
             marginBottom: '20px',
-            lineHeight: '1.2'
+            lineHeight: '1.2',
+            color: '#333',
+            textAlign: 'center' // Alterado para centralizar
           }}>
-            SEUS TREINOS DISPONÍVEIS 24 horas, 7 dias por semana.
-          </h2>
+            SEUS TREINOS DISPONÍVEIS
+            <span style={{ color: '#17a2b8' }}>24 horas, 7 dias por semana.</span>      </h2>
           
-          <p style={{
+          <p className="treinos-section-text" style={{
             fontSize: '1.1rem',
-            marginBottom: '30px',
-            opacity: 0.95,
-            lineHeight: '1.4'
+            marginBottom: '40px',
+            lineHeight: '1.4',
+            color: '#333',
+            textAlign: 'center' // Alterado para centralizar
           }}>
-            Acesse sua plataforma de treinos a qualquer hora, em qualquer lugar. Transforme seu corpo no seu tempo.
+            Assinando HOJE, você garante seu <strong>MAIOR ALIADO PARA ATINGIR O RESULTADO QUE SEMPRE DESEJOU!</strong> Pronto para te guiar todos os dias, a qualquer hora.
           </p>
           
-          <button style={{
-            backgroundColor: 'white',
-            color: '#17a2b8',
-            padding: '15px 40px',
-            border: 'none',
-            borderRadius: '6px',
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            textTransform: 'uppercase',
-            letterSpacing: '1px',
-            boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
-          }}>
-            ASSINAR AGORA
-          </button>
-        </div>
-      </div>
-
-      {/* SEÇÃO DE PROGRAMAS */}
-      <div style={{
-        width: '100%',
-        padding: '60px 30px',
-        backgroundColor: '#f8f9fa'
-      }}>
-        <div style={{
-          maxWidth: '1000px',
-          margin: '0 auto',
-          textAlign: 'center'
-        }}>
-          <h2 style={{
-            fontSize: '2rem',
-            fontWeight: 'bold',
-            marginBottom: '40px',
-            color: '#333'
-          }}>
-            Veja alguns dos programas mais populares
-          </h2>
-          
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '20px'
+            maxWidth: '600px',
+            margin: '0 auto', // Centralizado
+            textAlign: 'center' // Centralizado
           }}>
-            {[
-              { title: 'Treino em Casa', desc: 'Exercícios sem equipamentos' },
-              { title: 'Academia Completa', desc: 'Treinos com equipamentos' },
-              { title: 'Yoga & Pilates', desc: 'Flexibilidade e bem-estar' },
-              { title: 'Cardio Intenso', desc: 'Queima de gordura acelerada' }
-            ].map((program, index) => (
-              <div key={index} style={{
-                backgroundColor: 'white',
-                borderRadius: '10px',
-                padding: '25px 15px',
-                textAlign: 'center',
-                border: '1px solid #e0e0e0',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-              }}>
-                <div style={{
-                  fontSize: '2.5rem',
-                  marginBottom: '15px'
-                }}>
-                  💪
-                </div>
-                <h3 style={{
-                  fontSize: '1.1rem',
-                  fontWeight: 'bold',
-                  marginBottom: '10px',
-                  color: '#333'
-                }}>
-                  {program.title}
-                </h3>
-                <p style={{
-                  color: '#666',
-                  fontSize: '0.9rem'
-                }}>
-                  {program.desc}
-                </p>
-              </div>
-            ))}
+            <img 
+              src="./IMAGENS/COLMEIA VERTICAL.png" 
+              alt="Programas de treino disponíveis"
+              className="colmeia-image"
+              style={{
+                width: '100%',
+                maxWidth: '500px',
+                height: 'auto',
+                display: 'block',
+                margin: '0 auto' // Centralizado
+              }}
+            />
           </div>
         </div>
       </div>
 
-      {/* FOOTER */}
+      {/* Seção FAQ */}
+      <FAQ />
+
       <div style={{
         width: '100%',
         backgroundColor: '#333',
