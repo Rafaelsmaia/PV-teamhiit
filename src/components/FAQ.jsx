@@ -151,34 +151,6 @@ const FAQ = () => {
             </div>
           ))}
         </div>
-
-        <div style={{
-          marginTop: '50px',
-          textAlign: 'center'
-        }}>
-          <p style={{
-            fontSize: '1.1rem',
-            color: '#666',
-            marginBottom: '20px'
-          }}>
-            Ainda tem dúvidas? Estamos aqui para ajudar!
-          </p>
-          <button style={{
-            backgroundColor: '#17a2b8',
-            color: 'white',
-            padding: '15px 30px',
-            border: 'none',
-            borderRadius: '8px',
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            textTransform: 'uppercase',
-            letterSpacing: '1px',
-            boxShadow: '0 4px 12px rgba(23, 162, 184, 0.3)'
-          }}>
-            Entre em Contato
-          </button>
-        </div>
       </div>
     </div>
   );

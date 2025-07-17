@@ -102,6 +102,21 @@ function App() {
         margin-bottom: 15px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         transition: transform 0.3s ease;
+        max-height: 400px;
+      }
+      
+      .carousel-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .carousel-images {
+        max-width: 100%;
+        justify-content: center;
+      }
+      
+      .testimonial-card {
+        max-width: 300px;
       }
       
       .carousel-dots {
@@ -337,10 +352,11 @@ function App() {
         }
 
         .treinos-section-title {
-          font-size: 1.8rem !important;
+          font-size: 1.6rem !important;
           line-height: 1.3 !important;
           padding: 0 15px !important;
           text-align: center !important;
+          margin-bottom: 15px !important;
         }
 
         .treinos-section-text {
@@ -357,8 +373,86 @@ function App() {
         }
 
         .treinos-section {
-          padding: 15px 15px !important;
-          text-align: left !important;
+          padding: 20px 15px !important;
+          text-align: center !important;
+          margin: 0 !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+
+        .treinos-cta-button {
+          font-size: 0.85rem !important;
+          padding: 12px 20px !important;
+          max-width: 280px !important;
+          margin: 0 auto 20px auto !important;
+          display: block !important;
+        }
+
+        .treinos-widgets {
+          gap: 8px !important;
+          flex-direction: row !important;
+          justify-content: center !important;
+          max-width: 100% !important;
+          padding: 0 10px !important;
+          flex-wrap: nowrap !important;
+        }
+
+        .treinos-widget {
+          min-width: 100px !important;
+          max-width: 100px !important;
+          width: 100px !important;
+          padding: 10px 8px !important;
+          flex: 0 0 100px !important;
+          height: 80px !important;
+          display: flex !important;
+          flex-direction: column !important;
+          justify-content: center !important;
+          align-items: center !important;
+        }
+
+        .treinos-widget-icon {
+          font-size: 1rem !important;
+          margin-bottom: 4px !important;
+        }
+
+        .treinos-widget-text {
+          font-size: 0.65rem !important;
+          line-height: 1.1 !important;
+        }
+
+        /* Rodapé responsivo */
+        footer, .footer-section {
+          padding: 15px 10px !important;
+          text-align: center !important;
+          margin: 0 !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+
+        .footer-container {
+          max-width: 100% !important;
+          margin: 0 auto !important;
+          padding: 0 15px !important;
+          text-align: center !important;
+        }
+
+        .footer-title {
+          font-size: 1.1rem !important;
+          margin-bottom: 8px !important;
+          text-align: center !important;
+        }
+
+        .footer-description {
+          font-size: 0.8rem !important;
+          margin-bottom: 10px !important;
+          line-height: 1.3 !important;
+          text-align: center !important;
+        }
+
+        .footer-copyright {
+          font-size: 0.7rem !important;
+          margin: 0 !important;
+          text-align: center !important;
         }
       }
     `;
@@ -482,7 +576,7 @@ function App() {
       <div className="hero-section-background" style={{
         width: '100%',
         height: '70vh',
-        backgroundImage: 'url("./IMAGENS/IMAGEM BANNER.png" )',
+        backgroundImage: 'url("./IMAGENS/IMAGEM BANNER.png"  )',
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat',
@@ -523,33 +617,40 @@ function App() {
             Descubra treinos que se encaixam na sua vida e conquiste o corpo que você sempre quis, com a flexibilidade que você precisa.
           </p>
           
-          <button className="hero-button" style={{
-            backgroundColor: '#17a2b8',
-            color: 'white',
-            padding: '18px 40px',
-            border: 'none',
-            borderRadius: '6px',
-            fontSize: '1.1rem',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            marginBottom: '30px',
-            textTransform: 'uppercase',
-            letterSpacing: '1px',
-            boxShadow: '0 6px 12px rgba(23, 162, 184, 0.3), 0 4px 8px rgba(0,0,0,0.2)',
-            transition: 'all 0.3s ease',
-            transform: 'translateY(-2px)'
-          }}
-          onMouseOver={(e) => {
-            e.target.style.transform = 'translateY(-4px)';
-            e.target.style.boxShadow = '0 8px 16px rgba(23, 162, 184, 0.4), 0 6px 12px rgba(0,0,0,0.3)';
-          }}
-          onMouseOut={(e) => {
-            e.target.style.transform = 'translateY(-2px)';
-            e.target.style.boxShadow = '0 6px 12px rgba(23, 162, 184, 0.3), 0 4px 8px rgba(0,0,0,0.2)';
-          }}
+          <a 
+            href="https://payfast.greenn.com.br/81004/offer/gt8O6K"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-button" 
+            style={{
+              backgroundColor: '#17a2b8',
+              color: 'white',
+              padding: '18px 40px',
+              border: 'none',
+              borderRadius: '6px',
+              fontSize: '1.1rem',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              marginBottom: '30px',
+              textTransform: 'uppercase',
+              letterSpacing: '1px',
+              boxShadow: '0 6px 12px rgba(23, 162, 184, 0.3 ), 0 4px 8px rgba(0,0,0,0.2)',
+              transition: 'all 0.3s ease',
+              transform: 'translateY(-2px)',
+              textDecoration: 'none',
+              display: 'inline-block'
+            }}
+            onMouseOver={(e) => {
+              e.target.style.transform = 'translateY(-4px)';
+              e.target.style.boxShadow = '0 8px 16px rgba(23, 162, 184, 0.4), 0 6px 12px rgba(0,0,0,0.3)';
+            }}
+            onMouseOut={(e) => {
+              e.target.style.transform = 'translateY(-2px)';
+              e.target.style.boxShadow = '0 6px 12px rgba(23, 162, 184, 0.3), 0 4px 8px rgba(0,0,0,0.2)';
+            }}
           >
             QUERO COMEÇAR
-          </button>
+          </a>
           
           <div className="hero-widgets" style={{
             display: 'flex',
@@ -939,7 +1040,7 @@ function App() {
                 boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
               }}>
                 <img 
-                  src="./IMAGENS/ICONES/icon3.webp" 
+                  src="./IMAGENS/ICONES/icon4.webp" 
                   alt="Nutrição prática e acessível"
                   style={{
                     width: '100%',
@@ -988,7 +1089,7 @@ function App() {
                 boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
               }}>
                 <img 
-                  src="./IMAGENS/ICONES/icon4.webp" 
+                  src="./IMAGENS/ICONES/icon3.webp" 
                   alt="Comunidade e suporte"
                   style={{
                     width: '100%',
@@ -1075,22 +1176,27 @@ function App() {
         width: '100%',
         backgroundColor: '#f8f9fa',
         padding: '20px 30px',
-        textAlign: 'center' // Alterado para centralizar
+        textAlign: 'center',
+        margin: 0,
+        boxSizing: 'border-box'
       }}>
         <div style={{
           maxWidth: '800px',
-          margin: '0 auto'
+          margin: '0 auto',
+          padding: '0 15px',
+          boxSizing: 'border-box'
         }}>
           <h2 className="treinos-section-title" style={{
-            fontSize: '2.2rem',
-            fontWeight: 'bold',
+            fontSize: '2rem',
+            fontWeight: '800',
             marginBottom: '20px',
-            lineHeight: '1.2',
+            lineHeight: '1.3',
             color: '#333',
-            textAlign: 'center' // Alterado para centralizar
+            textAlign: 'center'
           }}>
-            SEUS TREINOS DISPONÍVEIS
-            <span style={{ color: '#17a2b8' }}>24 horas, 7 dias por semana.</span>      </h2>
+            SEUS TREINOS DISPONÍVEIS<br />
+            <span style={{ color: '#17a2b8' }}>24 horas, 7 dias por semana.</span>
+          </h2>
           
           <p className="treinos-section-text" style={{
             fontSize: '1.1rem',
@@ -1104,21 +1210,140 @@ function App() {
           
           <div style={{
             maxWidth: '600px',
-            margin: '0 auto', // Centralizado
-            textAlign: 'center' // Centralizado
+            margin: '0 auto',
+            textAlign: 'center',
+            padding: '0 10px',
+            boxSizing: 'border-box'
           }}>
             <img 
               src="./IMAGENS/COLMEIA VERTICAL.png" 
               alt="Programas de treino disponíveis"
-              className="colmeia-image"
               style={{
                 width: '100%',
                 maxWidth: '500px',
                 height: 'auto',
                 display: 'block',
-                margin: '0 auto' // Centralizado
+                margin: '0 auto 40px auto'
               }}
             />
+            
+            {/* Botão CTA */}
+            <a 
+              href="https://payfast.greenn.com.br/81004/offer/gt8O6K"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="treinos-cta-button" 
+              style={{
+                backgroundColor: '#17a2b8',
+                color: 'white',
+                padding: '18px 40px',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '1.1rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                marginBottom: '30px',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                boxShadow: '0 6px 12px rgba(23, 162, 184, 0.3 )',
+                transition: 'all 0.3s ease',
+                width: '100%',
+                maxWidth: '400px',
+                textDecoration: 'none',
+                display: 'inline-block',
+                textAlign: 'center'
+              }}
+            >
+              QUERO INICIAR MINHA JORNADA!
+            </a>
+            
+            {/* Widgets de confiança */}
+            <div className="treinos-widgets" style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '15px',
+              maxWidth: '500px',
+              margin: '0 auto',
+              flexWrap: 'wrap'
+            }}>
+              <div className="treinos-widget" style={{
+                textAlign: 'center',
+                padding: '15px 10px',
+                backgroundColor: 'white',
+                borderRadius: '8px',
+                border: '2px solid #e0e0e0',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                flex: '1',
+                minWidth: '140px',
+                maxWidth: '160px'
+              }}>
+                <div className="treinos-widget-icon" style={{ 
+                  fontSize: '1.5rem', 
+                  marginBottom: '8px', 
+                  color: '#e91e63' 
+                }}>✓</div>
+                <div className="treinos-widget-text" style={{ 
+                  fontSize: '0.8rem', 
+                  fontWeight: 'bold', 
+                  color: '#333', 
+                  lineHeight: '1.2' 
+                }}>
+                  Compra 100% Segura
+                </div>
+              </div>
+              
+              <div className="treinos-widget" style={{
+                textAlign: 'center',
+                padding: '15px 10px',
+                backgroundColor: 'white',
+                borderRadius: '8px',
+                border: '2px solid #e0e0e0',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                flex: '1',
+                minWidth: '140px',
+                maxWidth: '160px'
+              }}>
+                <div className="treinos-widget-icon" style={{ 
+                  fontSize: '1.5rem', 
+                  marginBottom: '8px', 
+                  color: '#e91e63' 
+                }}>♥</div>
+                <div className="treinos-widget-text" style={{ 
+                  fontSize: '0.8rem', 
+                  fontWeight: 'bold', 
+                  color: '#333', 
+                  lineHeight: '1.2' 
+                }}>
+                  Garantia Incondicional
+                </div>
+              </div>
+              
+              <div className="treinos-widget" style={{
+                textAlign: 'center',
+                padding: '15px 10px',
+                backgroundColor: 'white',
+                borderRadius: '8px',
+                border: '2px solid #e0e0e0',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                flex: '1',
+                minWidth: '140px',
+                maxWidth: '160px'
+              }}>
+                <div className="treinos-widget-icon" style={{ 
+                  fontSize: '1.5rem', 
+                  marginBottom: '8px', 
+                  color: '#e91e63' 
+                }}>🔄</div>
+                <div className="treinos-widget-text" style={{ 
+                  fontSize: '0.8rem', 
+                  fontWeight: 'bold', 
+                  color: '#333', 
+                  lineHeight: '1.2' 
+                }}>
+                  Renovação anual automática
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1126,32 +1351,32 @@ function App() {
       {/* Seção FAQ */}
       <FAQ />
 
-      <div style={{
+      <div className="footer-section" style={{
         width: '100%',
         backgroundColor: '#333',
         color: 'white',
         padding: '40px 30px',
         textAlign: 'center'
       }}>
-        <div style={{
+        <div className="footer-container" style={{
           maxWidth: '800px',
           margin: '0 auto'
         }}>
-          <h3 style={{
+          <h3 className="footer-title" style={{
             fontSize: '1.5rem',
             marginBottom: '15px'
           }}>
             <span style={{ color: 'white' }}>Team</span>{' '}
             <span style={{ color: '#17a2b8' }}>HIIT</span>
           </h3>
-          <p style={{
+          <p className="footer-description" style={{
             color: '#ccc',
             marginBottom: '20px',
             fontSize: '0.95rem'
           }}>
             Transforme seu corpo com treinos personalizados e nutrição prática.
           </p>
-          <p style={{
+          <p className="footer-copyright" style={{
             color: '#999',
             fontSize: '0.8rem'
           }}>
