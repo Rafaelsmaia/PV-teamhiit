@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import FAQ from './components/FAQ';
+import PopupForm from './components/PopupForm';
+
 
 function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   
   const testimonials = [
     {
@@ -171,6 +174,128 @@ function App() {
       .carousel-next {
         right: -25px;
       }
+
+      /* Estilos para o vídeo na seção HERO */
+      .hero-video-container {
+        position: relative;
+        width: 80%; /* Aumentado para 80% */
+        max-width: 500px;
+        aspect-ratio: 16/9;
+        z-index: 3;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        margin-bottom: 20px; /* Espaço entre o vídeo e o conteúdo abaixo */
+      }
+
+      .hero-video-iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* Overlay escuro para destacar o vídeo */
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.1);
+        z-index: 2;
+      }
+
+      /* Ajustes para o conteúdo de texto */
+      .hero-content-wrapper {
+        position: relative;
+        z-index: 4;
+      padding: 20px;        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        max-width: 600px;
+      }
+
+      /* Header Transparente */
+      .header-transparent {
+        background-color: transparent !important;
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+       padding: 20px;
+        box-sizing: border-box;
+        min-height: auto;
+        display: flex;
+        justify-content: flex-start !important;
+        align-items: center;
+      }
+
+      .header-transparent .header-login-section {
+        display: flex;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 15px !important;
+      }
+
+      .header-transparent .header-login-text {
+        display: none !important;
+      }
+
+      .header-transparent .header-login-button {
+        background-color: transparent !important; /* Transparente */
+        color: white !important; /* Texto branco */
+        border: 1px solid white !important; /* Contorno branco fino */
+        padding: 8px 15px !important;
+        font-size: 1rem !important;
+        font-weight: 300 !important; /* Fonte fina */
+        border-radius: 6px !important;
+        text-transform: uppercase;
+        text-decoration: none !important; /* Sem sublinhado */
+        box-shadow: none !important; /* Sem sombra */
+        margin-right: 0 !important; /* Remove margem extra */
+      }
+
+      .header-transparent .header-title span {
+        color: white !important;
+      }
+
+      .header-transparent .header-title span:last-child {
+        color: #17a2b8 !important;
+      }
+
+      /* Ajustes para o título da HERO */
+      .hero-title {
+        font-size: 2.8rem;
+        font-weight: bold;
+        line-height: 1.1;
+        margin-bottom: 20px;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        z-index: 5;
+        text-align: center;
+        max-width: 80%;
+        white-space: nowrap; /* Garante que a primeira linha não quebre */
+      }
+
+      .hero-title span {
+        white-space: nowrap; /* Garante que a segunda linha não quebre */
+        color: white !important; /* Texto branco */
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Sombra clara para contraste */
+      }
+
+      /* Ajuste da altura da seção HERO para se adequar à imagem */
+      .hero-section-background {
+        height: auto; /* Altura automática */
+        min-height: 100vh; /* Garante que ocupe pelo menos a altura da viewport */
+        padding-bottom: 50px; /* Adiciona um padding para o conteúdo abaixo */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
       
       @media (max-width: 768px) {
         .carousel-images {
@@ -206,119 +331,6 @@ function App() {
           height: 40px !important;
           font-size: 16px !important;
         }
-        
-        .testimonials-title {
-          font-size: 1.4rem !important;
-          line-height: 1.3 !important;
-          text-align: center !important;
-          margin: 0 auto 30px auto !important;
-          padding: 0 10px !important;
-          max-width: 100% !important;
-          width: 100% !important;
-          box-sizing: border-box !important;
-        }
-        
-        .testimonials-section {
-          padding: 40px 0px !important;
-          margin: 0 !important;
-          width: 100% !important;
-          box-sizing: border-box !important;
-        }
-        
-        .testimonials-description {
-          font-size: 0.85rem !important;
-          line-height: 1.4 !important;
-          padding: 0 10px !important;
-          margin-top: 20px !important;
-        }
-        
-        .carousel-dots {
-          margin-top: 15px !important;
-          margin-bottom: 15px !important;
-        }
-        
-        .carousel-dot {
-          width: 8px !important;
-          height: 8px !important;
-        }
-        
-        .marquee-text {
-          font-size: 1.2rem;
-          letter-spacing: 3px;
-        }
-        
-        .features-grid {
-          grid-template-columns: 1fr !important;
-          gap: 30px !important;
-        }
-        
-        .feature-card {
-          max-width: 100% !important;
-        }
-
-        .hero-section-background {
-          background-image: url("./IMAGENS/banner mobile.png") !important;
-          background-position: center !important;
-          height: 100vh !important;
-          min-height: 600px !important;
-        }
-
-        .hero-content-container {
-          padding: 20px !important;
-          text-align: center !important;
-          justify-content: center !important;
-          align-items: center !important;
-          padding-top: 10vh !important;
-          padding-bottom: 5vh !important;
-        }
-
-        .hero-text-container {
-          max-width: 100% !important;
-          text-align: center !important;
-        }
-
-        .hero-title {
-          font-size: 1.8rem !important;
-          line-height: 1.2 !important;
-          margin-bottom: 15px !important;
-        }
-
-        .hero-subtitle {
-          font-size: 0.95rem !important;
-          margin-bottom: 25px !important;
-          line-height: 1.3 !important;
-        }
-
-        .hero-button {
-          font-size: 0.9rem !important;
-          padding: 15px 30px !important;
-          margin-bottom: 25px !important;
-          width: 100% !important;
-          max-width: 280px !important;
-        }
-
-        .hero-widgets {
-          justify-content: center !important;
-          max-width: 100% !important;
-          gap: 8px !important;
-          margin-bottom: 0px !important;
-        }
-
-        .hero-widget {
-          padding: 10px 8px !important;
-          min-width: 90px !important;
-          flex: 1 !important;
-        }
-
-        .hero-widget-icon {
-          font-size: 0.9rem !important;
-          margin-bottom: 6px !important;
-        }
-
-        .hero-widget-text {
-          font-size: 0.6rem !important;
-          line-height: 1.2 !important;
-        }
 
         .header-mobile {
           padding: 15px 20px !important;
@@ -333,22 +345,17 @@ function App() {
         }
 
         .header-login-section {
-          flex-direction: column !important;
-          gap: 2px !important;
-          align-items: flex-end !important;
-        }
-
-        .header-login-text {
-          font-size: 10px !important; 
-          white-space: normal !important; 
-          text-align: right !important; 
-          line-height: 1.2 !important;
+          flex-direction: row !important; /* Garante que o botão fique na mesma linha da logo */
+          align-items: center !important;
+          gap: 0 !important; /* Remove gap */
         }
 
         .header-login-button {
           font-size: 10px !important; 
           padding: 8px 12px !important; 
-          min-width: 120px !important; 
+          min-width: auto !important; /* Permite que o botão se ajuste ao conteúdo */
+          margin-right: 0 !important; /* Garante que não haja sobra */
+          width: auto !important; /* Ajusta a largura automaticamente */
         }
 
         .treinos-section-title {
@@ -389,9 +396,9 @@ function App() {
         }
 
         .treinos-widgets {
+          justify-content: center !important;
           gap: 8px !important;
           flex-direction: row !important;
-          justify-content: center !important;
           max-width: 100% !important;
           padding: 0 10px !important;
           flex-wrap: nowrap !important;
@@ -454,6 +461,34 @@ function App() {
           margin: 0 !important;
           text-align: center !important;
         }
+
+        /* Correções específicas para mobile */
+        .hero-title {
+          font-size: 1.6rem; /* Ajusta o tamanho da fonte para mobile */
+          line-height: 1.2; /* Ajusta o espaçamento entre linhas */
+          white-space: nowrap; /* Garante que o texto não quebre */
+          max-width: 100%; /* Permite que o texto ocupe toda a largura disponível */
+          padding: 0 10px; /* Adiciona padding para evitar que o texto encoste nas bordas */
+          box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+        }
+
+        .hero-title span {
+          white-space: nowrap; /* Garante que a segunda linha não quebre */
+        }
+
+        .hero-section-background {
+          min-height: auto; /* Remove min-height fixo para mobile */
+          height: 100vh; /* Usa 100vh para garantir que ocupe a tela */
+        background-image: url("./IMAGENS/banner mobile.png");
+          background-size: cover; /* Garante que a imagem cubra toda a área */
+          background-position: center; /* Centraliza a imagem */
+        }
+
+        .header-login-button {
+          margin-right: 0 !important; /* Remove margem extra */
+          padding: 6px 10px !important; /* Ajusta o padding */
+          font-size: 0.8rem !important; /* Ajusta o tamanho da fonte */
+        }
       }
     `;
     document.head.appendChild(style);
@@ -498,6 +533,23 @@ function App() {
     return [testimonials[firstIndex], testimonials[secondIndex]];
   };
 
+  // Funções do Pop-up
+  const openPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const handleFormSubmit = (formData) => {
+    // Aqui você pode enviar os dados para uma API se necessário
+    console.log('Dados do formulário:', formData);
+    
+    // Redirecionar para o checkout
+    window.open('https://payfast.greenn.com.br/81004/offer/gt8O6K', '_blank');
+  };
+
   return (
     <div style={{
       width: '100%',
@@ -508,119 +560,70 @@ function App() {
       overflowX: 'hidden'
     }}>
       
-      <div className="header-mobile" style={{
-        width: '100%',
-        backgroundColor: '#2c2c2c',
-        padding: '20px 40px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        position: 'relative',
-        zIndex: 10,
-        boxSizing: 'border-box',
-        minHeight: '70px'
-      }}>
-        <div style={{ flexShrink: 0 }}>
-          <h1 className="header-title" style={{
-            fontSize: '1.8rem',
-            fontWeight: 'bold',
-            margin: 0,
-            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif'
-          }}>
-            <span style={{ color: 'white' }}>Team</span>{' '}
-            <span style={{ color: '#17a2b8' }}>HIIT</span>
-          </h1>
+      {/* HEADER TRANSPARENTE */}
+      <div className="header-mobile header-transparent">
+        <div>
+          <img src="./IMAGENS/fina.png" alt="Team HIIT Logo" style={{ height: '20px' }} />
         </div>
-        <div className="header-login-section" style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-end',
-          gap: '2px',
-          flexShrink: 0
-        }}>
-          <span className="header-login-text" style={{
-            fontSize: '10px',
-            color: 'white',
-            fontWeight: '400',
-            whiteSpace: 'normal',
-            textAlign: 'right',
-            lineHeight: '1.2'
-          }}>
-            Já possui uma conta? Faça login
-          </span>
+        <div className="header-login-section">
           <a 
-            href="https://play.weburn.com.br/login" 
-            target="_blank" 
-            rel="noopener noreferrer"
+            href="javascript:void(0)" 
+            onClick={(e) => e.preventDefault()}
+            style={{ cursor: 'not-allowed' }}
             className="header-login-button"
-            style={{
-              color: '#007cba',
-              textDecoration: 'none',
-              padding: '8px 12px',
-              border: '2px solid #007cba',
-              borderRadius: '6px',
-              fontSize: '10px',
-              fontWeight: '600',
-              backgroundColor: 'white',
-              whiteSpace: 'nowrap',
-              flexShrink: 0,
-              minWidth: '120px',
-              textAlign: 'center'
-            }}
           >
-            ENTRE NA SUA CONTA
+            ENTRAR
           </a>
         </div>
       </div>
 
+      {/* SEÇÃO HERO MODIFICADA COM VÍDEO */}
       <div className="hero-section-background" style={{
         width: '100%',
-        height: '70vh',
-        backgroundImage: 'url("./IMAGENS/IMAGEM BANNER.png"  )',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center center',
-        backgroundRepeat: 'no-repeat',
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-        margin: 0,
-        padding: 0,
-        boxSizing: 'border-box'
+        paddingTop: '80px', // Adicionado padding-top para afastar os elementos do header
       }}>
-        <div style={{
-          textAlign: 'center',
+        {/* Overlay escuro para destacar o vídeo */}
+        <div className="hero-overlay"></div>
+
+        <h1 className="hero-title">
+          TRANSFORME O SEU CORPO<br />
+          <span style={{ color: 'white', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>E MUDE A SUA VIDA!</span>
+        </h1>
+        <div className="hero-video-container">
+          <iframe 
+            className="hero-video-iframe"
+            src="https://www.youtube.com/embed/pYEj4i98vzI?autoplay=1&loop=1&playlist=pYEj4i98vzI&controls=1&showinfo=0&rel=0"
+            title="Team HIIT - Vídeo de Apresentação"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+
+        {/* Conteúdo de texto reposicionado (subtítulo, botão, widgets) */}
+        <div className="hero-content-wrapper" style={{
+          position: 'relative',
+          bottom: 'auto',
+          left: 'auto',
+          right: 'auto',
+          marginTop: '20px',
           zIndex: 5,
+          padding: '0 20px',
+          width: '100%',
           maxWidth: '600px',
-          padding: '0 20px 40px 20px',
-          width: '100%'
         }}>
-          <h1 className="hero-title" style={{
-            fontSize: '2.8rem',
-            fontWeight: 'bold',
-            lineHeight: '1.1',
-            marginBottom: '20px',
-            color: '#333'
-          }}>
-            Entre em forma do<br />
-            seu jeito: <span style={{ color: '#17a2b8' }}>no conforto<br />
-            da sua casa!</span>
-          </h1>
-          
           <p className="hero-subtitle" style={{
             fontSize: '1.1rem',
-            color: '#666',
-            marginBottom: '30px',
+            color: 'white',
+            marginBottom: '25px',
             lineHeight: '1.4',
-            fontWeight: '400'
+            fontWeight: '400',
+            textShadow: '1px 1px 2px rgba(0,0,0,0.7)'
           }}>
             Descubra treinos que se encaixam na sua vida e conquiste o corpo que você sempre quis, com a flexibilidade que você precisa.
           </p>
           
-          <a 
-            href="https://payfast.greenn.com.br/81004/offer/gt8O6K"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button 
+            onClick={openPopup}
             className="hero-button" 
             style={{
               backgroundColor: '#17a2b8',
@@ -631,10 +634,10 @@ function App() {
               fontSize: '1.1rem',
               fontWeight: 'bold',
               cursor: 'pointer',
-              marginBottom: '30px',
+              marginBottom: '25px',
               textTransform: 'uppercase',
               letterSpacing: '1px',
-              boxShadow: '0 6px 12px rgba(23, 162, 184, 0.3 ), 0 4px 8px rgba(0,0,0,0.2)',
+              boxShadow: '0 6px 12px rgba(23, 162, 184, 0.3), 0 4px 8px rgba(0,0,0,0.2)',
               transition: 'all 0.3s ease',
               transform: 'translateY(-2px)',
               textDecoration: 'none',
@@ -650,7 +653,7 @@ function App() {
             }}
           >
             QUERO COMEÇAR
-          </a>
+          </button>
           
           <div className="hero-widgets" style={{
             display: 'flex',
@@ -727,9 +730,9 @@ function App() {
         </div>
       </div>
 
-      <div className="testimonials-section" style={{
+      <div style={{
         width: '100%',
-        padding: '60px 0px',
+        padding: '40px 20px',
         backgroundColor: '#f8f9fa',
         textAlign: 'center',
         margin: 0,
@@ -760,7 +763,7 @@ function App() {
           </h2>
           
           <div className="carousel-container" style={{ 
-            position: 'relative', 
+            position: 'relative',
             marginBottom: '20px',
             maxWidth: '100%',
             padding: '0 5px'
@@ -871,6 +874,39 @@ function App() {
         </div>
       </div>
 
+      <div style={{ textAlign: 'center', margin: '20px 0' }}>
+        <button 
+          onClick={openPopup}
+          style={{
+            backgroundColor: '#17a2b8',
+            color: 'white',
+            padding: '18px 40px',
+            border: 'none',
+            borderRadius: '6px',
+            fontSize: '1.1rem',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            boxShadow: '0 6px 12px rgba(23, 162, 184, 0.3), 0 4px 8px rgba(0,0,0,0.2)',
+            transition: 'all 0.3s ease',
+            transform: 'translateY(-2px)',
+            textDecoration: 'none',
+            display: 'inline-block'
+          }}
+          onMouseOver={(e) => {
+            e.target.style.transform = 'translateY(-4px)';
+            e.target.style.boxShadow = '0 8px 16px rgba(23, 162, 184, 0.4), 0 6px 12px rgba(0,0,0,0.3)';
+          }}
+          onMouseOut={(e) => {
+            e.target.style.transform = 'translateY(-2px)';
+            e.target.style.boxShadow = '0 6px 12px rgba(23, 162, 184, 0.3), 0 4px 8px rgba(0,0,0,0.2)';
+          }}
+        >
+          QUERO RESULTADOS ASSIM
+        </button>
+      </div>
+
       <div style={{
         width: '100%',
         backgroundColor: '#17a2b8',
@@ -888,7 +924,7 @@ function App() {
 
       <div style={{
         width: '100%',
-        padding: '40px 20px',
+        padding: '60px 20px',
         backgroundColor: '#f8f9fa',
         textAlign: 'center',
         margin: 0,
@@ -910,7 +946,7 @@ function App() {
             margin: '0 auto 60px auto',
             maxWidth: '100%'
           }}>
-            O que <span style={{ color: '#17a2b8' }}>você encontra</span> na Team HIIT?
+            O que <span style={{ color: '#17a2b8' }}>você encontra</span> no Team HIIT?
           </h2>
           
           <div style={{
@@ -965,7 +1001,7 @@ function App() {
                   lineHeight: '1.5',
                   margin: 0
                 }}>
-                  Desde quem está começando até quem quer se superar, com treinos de musculação, funcional, HIIT, yoga, corrida e muito mais.
+                  Desde quem está começando até quem quer se superar, com treinos de musculação, funcional, HIIT e muito mais.
                 </p>
               </div>
             </div>
@@ -1086,6 +1122,7 @@ function App() {
                 height: '40px',
                 borderRadius: '8px',
                 overflow: 'hidden',
+                flexShrink: 0,
                 boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
               }}>
                 <img 
@@ -1114,7 +1151,7 @@ function App() {
                   lineHeight: '1.5',
                   margin: 0
                 }}>
-                  Você nunca está sozinho, conta com o apoio dos maiores especialistas do Brasil e uma rede de pessoas que vibra com as suas conquistas.
+                  Você nunca está sozinho, conta com o apoio de uma equipe especializada e uma rede de pessoas que vibra com as suas conquistas.
                 </p>
               </div>
             </div>
@@ -1172,10 +1209,10 @@ function App() {
         </div>
       </div>
 
-      <div className="treinos-section" style={{
+      <div style={{
         width: '100%',
-        backgroundColor: '#f8f9fa',
-        padding: '20px 30px',
+        padding: '60px 20px',
+        backgroundColor: '#000000',
         textAlign: 'center',
         margin: 0,
         boxSizing: 'border-box'
@@ -1186,170 +1223,82 @@ function App() {
           padding: '0 15px',
           boxSizing: 'border-box'
         }}>
-          <h2 className="treinos-section-title" style={{
-            fontSize: '2rem',
-            fontWeight: '800',
+          <h2 style={{
+            fontSize: '2.5rem',
+            fontWeight: 'bold',
             marginBottom: '20px',
-            lineHeight: '1.3',
-            color: '#333',
-            textAlign: 'center'
+            color: '#ffffff',
+            lineHeight: '1.2',
+            textAlign: 'center',
+            maxWidth: '100%'
           }}>
             SEUS TREINOS DISPONÍVEIS<br />
             <span style={{ color: '#17a2b8' }}>24 horas, 7 dias por semana.</span>
           </h2>
-          
-          <p className="treinos-section-text" style={{
+          <p style={{
             fontSize: '1.1rem',
+            color: '#cccccc',
             marginBottom: '40px',
-            lineHeight: '1.4',
-            color: '#333',
-            textAlign: 'center' // Alterado para centralizar
+            lineHeight: '1.5',
+            textAlign: 'center'
           }}>
-            Assinando HOJE, você garante seu <strong>MAIOR ALIADO PARA ATINGIR O RESULTADO QUE SEMPRE DESEJOU!</strong> Pronto para te guiar todos os dias, a qualquer hora.
+            Assinando HOJE, você garante seu <strong style={{ color: '#ffffff' }}>MAIOR ALIADO</strong> para atingir o resultado que <strong style={{ color: '#ffffff' }}>SEMPRE DESEJOU!</strong> Pronto para te guiar todos os dias, a qualquer hora.
           </p>
           
           <div style={{
-            maxWidth: '600px',
-            margin: '0 auto',
-            textAlign: 'center',
-            padding: '0 10px',
-            boxSizing: 'border-box'
+            marginBottom: '40px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
           }}>
             <img 
               src="./IMAGENS/COLMEIA VERTICAL.png" 
-              alt="Programas de treino disponíveis"
+              alt="Treinos Disponíveis"
               style={{
-                width: '100%',
-                maxWidth: '500px',
+                maxWidth: '100%',
                 height: 'auto',
-                display: 'block',
-                margin: '0 auto 40px auto'
+                // Removido borderRadius e boxShadow para tirar o fundo branco
               }}
             />
-            
-            {/* Botão CTA */}
-            <a 
-              href="https://payfast.greenn.com.br/81004/offer/gt8O6K"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="treinos-cta-button" 
-              style={{
-                backgroundColor: '#17a2b8',
-                color: 'white',
-                padding: '18px 40px',
-                border: 'none',
-                borderRadius: '8px',
-                fontSize: '1.1rem',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                marginBottom: '30px',
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-                boxShadow: '0 6px 12px rgba(23, 162, 184, 0.3 )',
-                transition: 'all 0.3s ease',
-                width: '100%',
-                maxWidth: '400px',
-                textDecoration: 'none',
-                display: 'inline-block',
-                textAlign: 'center'
-              }}
-            >
-              QUERO INICIAR MINHA JORNADA!
-            </a>
-            
-            {/* Widgets de confiança */}
-            <div className="treinos-widgets" style={{
-              display: 'flex',
-              justifyContent: 'center',
-              gap: '15px',
-              maxWidth: '500px',
-              margin: '0 auto',
-              flexWrap: 'wrap'
-            }}>
-              <div className="treinos-widget" style={{
-                textAlign: 'center',
-                padding: '15px 10px',
-                backgroundColor: 'white',
-                borderRadius: '8px',
-                border: '2px solid #e0e0e0',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                flex: '1',
-                minWidth: '140px',
-                maxWidth: '160px'
-              }}>
-                <div className="treinos-widget-icon" style={{ 
-                  fontSize: '1.5rem', 
-                  marginBottom: '8px', 
-                  color: '#e91e63' 
-                }}>✓</div>
-                <div className="treinos-widget-text" style={{ 
-                  fontSize: '0.8rem', 
-                  fontWeight: 'bold', 
-                  color: '#333', 
-                  lineHeight: '1.2' 
-                }}>
-                  Compra 100% Segura
-                </div>
-              </div>
-              
-              <div className="treinos-widget" style={{
-                textAlign: 'center',
-                padding: '15px 10px',
-                backgroundColor: 'white',
-                borderRadius: '8px',
-                border: '2px solid #e0e0e0',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                flex: '1',
-                minWidth: '140px',
-                maxWidth: '160px'
-              }}>
-                <div className="treinos-widget-icon" style={{ 
-                  fontSize: '1.5rem', 
-                  marginBottom: '8px', 
-                  color: '#e91e63' 
-                }}>♥</div>
-                <div className="treinos-widget-text" style={{ 
-                  fontSize: '0.8rem', 
-                  fontWeight: 'bold', 
-                  color: '#333', 
-                  lineHeight: '1.2' 
-                }}>
-                  Garantia Incondicional
-                </div>
-              </div>
-              
-              <div className="treinos-widget" style={{
-                textAlign: 'center',
-                padding: '15px 10px',
-                backgroundColor: 'white',
-                borderRadius: '8px',
-                border: '2px solid #e0e0e0',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                flex: '1',
-                minWidth: '140px',
-                maxWidth: '160px'
-              }}>
-                <div className="treinos-widget-icon" style={{ 
-                  fontSize: '1.5rem', 
-                  marginBottom: '8px', 
-                  color: '#e91e63' 
-                }}>🔄</div>
-                <div className="treinos-widget-text" style={{ 
-                  fontSize: '0.8rem', 
-                  fontWeight: 'bold', 
-                  color: '#333', 
-                  lineHeight: '1.2' 
-                }}>
-                  Renovação anual automática
-                </div>
-              </div>
-            </div>
           </div>
+
+          <button 
+            onClick={openPopup}
+            style={{
+              backgroundColor: '#17a2b8',
+              color: 'white',
+              padding: '18px 40px',
+              border: 'none',
+              borderRadius: '6px',
+              fontSize: '1.1rem',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              textTransform: 'uppercase',
+              letterSpacing: '1px',
+              boxShadow: '0 6px 12px rgba(23, 162, 184, 0.3), 0 4px 8px rgba(0,0,0,0.2)',
+              transition: 'all 0.3s ease',
+              transform: 'translateY(-2px)',
+              textDecoration: 'none',
+              display: 'inline-block'
+            }}
+            onMouseOver={(e) => {
+              e.target.style.transform = 'translateY(-4px)';
+              e.target.style.boxShadow = '0 8px 16px rgba(23, 162, 184, 0.4), 0 6px 12px rgba(0,0,0,0.3)';
+            }}
+            onMouseOut={(e) => {
+              e.target.style.transform = 'translateY(-2px)';
+              e.target.style.boxShadow = '0 6px 12px rgba(23, 162, 184, 0.3), 0 4px 8px rgba(0,0,0,0.2)';
+            }}
+          >
+            QUERO INICIAR MINHA JORNADA!
+          </button>
         </div>
       </div>
 
-      {/* Seção FAQ */}
-      <FAQ />
+      <FAQ style={{
+        backgroundColor: '#000000',
+        color: '#ffffff'
+      }} />
 
       <div className="footer-section" style={{
         width: '100%',
@@ -1358,7 +1307,7 @@ function App() {
         padding: '40px 30px',
         textAlign: 'center'
       }}>
-        <div className="footer-container" style={{
+        <div style={{
           maxWidth: '800px',
           margin: '0 auto'
         }}>
@@ -1380,15 +1329,20 @@ function App() {
             color: '#999',
             fontSize: '0.8rem'
           }}>
-            &copy; 2024 Team HIIT. Todos os direitos reservados.
+            © 2024 Team HIIT
           </p>
         </div>
       </div>
 
+      {/* Componente PopupForm */}
+      <PopupForm 
+        isOpen={isPopupOpen}
+        onClose={closePopup}
+        onSubmit={handleFormSubmit}
+      />
     </div>
   );
 }
 
 export default App;
-
 
