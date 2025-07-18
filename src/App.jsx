@@ -28,6 +28,18 @@ function App() {
     {
       id: 5,
       image: './IMAGENS/PROVAS SOCIAIS/PS5.png'
+    },
+    {
+      id: 6,
+      image: './IMAGENS/PROVAS SOCIAIS/PS6.png'
+    },
+    {
+      id: 7,
+      image: './IMAGENS/PROVAS SOCIAIS/PS7.png'
+    },
+    {
+      id: 8,
+      image: './IMAGENS/PROVAS SOCIAIS/PS8.png'
     }
   ];
 
