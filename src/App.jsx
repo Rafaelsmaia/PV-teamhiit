@@ -559,7 +559,7 @@ function App() {
     console.log('Dados do formulário:', formData);
     
     // Redirecionar para o checkout
-    window.open('https://payfast.greenn.com.br/81004/offer/gt8O6K', '_blank');
+    window.open('https://payfast.greenn.com.br/81004/offer/CZ5eV3', '_blank');
   };
 
   return (
